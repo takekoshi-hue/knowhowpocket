@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pocket_name: MyString
+  user: one
+
+two:
+  pocket_name: MyString
+  user: two

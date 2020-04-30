@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  title: MyString
+  pocket: one
+  posted: false
+
+two:
+  content: MyString
+  title: MyString
+  pocket: two
+  posted: false
