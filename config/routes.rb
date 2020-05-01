@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
  
   
-  get 'relationships/create'
-  get 'relationships/destroy'
+  
+  get 'knowhows/create'
+  get 'knowhows/destroy'
+  get 'knowhows/index'
+  get 'knowhows/show'
+  get 'knowhows/edit'
+  get 'knowhows/new'
+  get 'knowhows/update'
  root to: "toppages#index"
  
  get "login", to: "sessions#new"
@@ -19,6 +25,7 @@ Rails.application.routes.draw do
  end
  
  resources :pockets
+ resources :knowhows
  
  resources :relationships, only: [:create, :destroy]
  end

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_210638) do
     t.string "content"
     t.string "title"
     t.bigint "pocket_id"
-    t.boolean "posted"
+    t.boolean "posted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pocket_id"], name: "index_knowhows_on_pocket_id"
