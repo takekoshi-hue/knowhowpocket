@@ -3,13 +3,7 @@ Rails.application.routes.draw do
  
   
   
-  get 'knowhows/create'
-  get 'knowhows/destroy'
-  get 'knowhows/index'
-  get 'knowhows/show'
-  get 'knowhows/edit'
-  get 'knowhows/new'
-  get 'knowhows/update'
+  
  root to: "toppages#index"
  
  get "login", to: "sessions#new"
