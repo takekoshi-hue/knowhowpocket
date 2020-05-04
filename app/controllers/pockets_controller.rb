@@ -3,7 +3,8 @@ class PocketsController < ApplicationController
   before_action :correct_user, only: [:destroy, :update, :edit]
   
   def index
-    @pockets = current_user.pocket_name.order(id: :desc).page(params[:page])
+    @pocket = current_user.pockets.build
+    @pockets = current_user.pockets.order(id: :desc).page(params[:page])
   end
 
   def show
@@ -22,7 +23,7 @@ class PocketsController < ApplicationController
       redirect_to "pockets/index"
     else
       flash.now[:danger] = "ポケットができませんでした。"
-      render "pockets/new"
+      render "pockets/index"
     
   
   end

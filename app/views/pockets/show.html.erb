@@ -1,2 +1,15 @@
-<h1>Pockets#show</h1>
-<p>Find me in app/views/pockets/show.html.erb</p>
+<% if logged_in? %>
+<div class = "row">
+    <aside class = "col-sm-4">
+        <%= form_with(model: @pocket, local: true) do |f| %>
+        <div class = "form-group">
+            <%= f.text_area :pocket_name, class: "form-control", rows: 5 %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-primary btn-block" %>
+        <% end %>
+    </aside>
+    <div class = "col-sm-8">
+        <%= render "pockets/pockets", pockets: @pockets %>
+    </div>
+</div>
+<% end %>

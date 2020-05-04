@@ -1,0 +1,23 @@
+<ul class = "list-unstyled">
+    <% pockets.each do |pocket| %>
+    <li class = "media mb-3">
+        <img class = "mr-2 rounded" src = "<%= gravatar_url(pocket.user, 
+        { size: 50 }) %>" alt = "">
+        <div class = "media-body">
+            <div>
+                <%= link_to pocket.user.name, user_path(pocket.user) %>
+                <span class= "text-muted">create at <%= pocket.created_at %></span>
+            </div>
+            <div>
+                <p><%= pocket_name %></p>
+            </div>
+            <div>
+                <% if current_user == pocket.user %>
+                <%= link_to "Delete", pocket, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
+                <% end %>
+            </div>
+        </div>
+    </li>
+    <% end %>
+    <%= paginate pockets %>
+</ul>
