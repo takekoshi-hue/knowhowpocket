@@ -2,11 +2,13 @@
     <h1>Signup</h1>
 </div>
 
-<%= form_with(model: @user, local: true) do |f| %>
-<%= render "laylouts/error_messages", model: f.object %>
-
 <div class = "row">
     <div class = "col-sm-6 offset-sm-3">
+        
+<%= form_with(model: @user, local: true) do |f| %>
+<%= render "layouts/error_messages", model: f.object %>
+
+
         <%= form_with(model: @user, local: true) do |f| %>
         
         <div class = "form-group">
@@ -33,3 +35,4 @@
         <% end %>
     </div>
 </div>
+<% end %>

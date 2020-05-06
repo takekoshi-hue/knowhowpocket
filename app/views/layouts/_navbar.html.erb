@@ -19,7 +19,7 @@
                         <li class = "dropdown-divider"></li>
                         <li class = "dropdown-item"><%= link_to "Logout", logout_path, method: :delete %></li>
                         <li class = "dropdown-item">プロフィール編集</li>
-                        <li class = "dropdown-item">My ポケット</li>
+                        <li class = "dropdown-item"><%= link_to "My ポケット", pockets_user_path(current_user) %></li>
                         <li class = "dropdown-item">検索</li>
                     </ul>
                 </li>

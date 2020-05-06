@@ -11,10 +11,16 @@ Rails.application.routes.draw do
    member do
      get :followings
      get :followers
+     get :pockets 
    end
  end
  
- resources :pockets
+
+ resources :pockets, only: [:destroy, :new, :edit, :update, :create] do
+  member do
+    get :knowhows 
+   end
+  end
  resources :knowhows
  
  resources :relationships, only: [:create, :destroy]

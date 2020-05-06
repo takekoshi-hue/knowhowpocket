@@ -1,0 +1,9 @@
+  <a href="
+<%= followings_user_path(@user) %>
+" class="nav-link 
+<%= 'active' if current_page?(followings_user_path(@user)) %>
+">Followings  <span class="badge badge-secondary">
+<%= @count_followings %>
+</span></a>
+
+<%= render 'users', users: @followings %>

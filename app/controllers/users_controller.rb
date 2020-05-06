@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @users = User.order(id: :desc).page(params[:page]).per(25)
   end
 
   def new
@@ -38,6 +39,13 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
+  
+  def pockets
+    @pocket = current_user.pockets.build
+    @pockets = current_user.pockets.order(id: :desc).page(params[:page])
+  end
+  
+  
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

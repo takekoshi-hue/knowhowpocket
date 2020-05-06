@@ -9,11 +9,12 @@
                 <span class= "text-muted">create at <%= pocket.created_at %></span>
             </div>
             <div>
-                <p><%= pocket_name %></p>
+                <p><%= pocket.pocket_name %></p>
             </div>
             <div>
                 <% if current_user == pocket.user %>
                 <%= link_to "Delete", pocket, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
+                <%= link_to "Edit", edit_pocket_path, class: "btn btn-primary btn-sm" %>
                 <% end %>
             </div>
         </div>

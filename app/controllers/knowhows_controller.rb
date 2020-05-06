@@ -1,14 +1,15 @@
 class KnowhowsController < ApplicationController
   before_action :require_user_logged_in
+  before_action :correct_user, only: [:destroy]
   
   def create
-    @knowhow = current_pocket.knowhows.build(knowhow_params)
+    @knowhow = pocket.knowhows.build(title_params, content_params)
     if @knowhow.save
       flash[:success] = "新しいノウハウができました。"
-      redirect_to "knowhows/show"
+      redirect_to knowhows_pocket_path(pocket.id)
     else
       flash.now[:danger] = "ノウハウができませんでした。"
-      render "pockets/index"
+      render :new
     end
   end
 
@@ -18,12 +19,10 @@ class KnowhowsController < ApplicationController
     redirect_to "pockets/index"
   end
 
-  def index
-  end
 
   def show
-    @pocket = Pocket.find(params[:id])
-    @knowhows = @pocket.knowhows.order(id: :desc).page(params[:page])
+    @knowhow = current_pocket.knowhows.build
+    @knowhows = current_pocket.knowhows.order(id: :desc).page(params[:page])
   end
 
   def edit
