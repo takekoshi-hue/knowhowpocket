@@ -14,14 +14,19 @@ Rails.application.routes.draw do
      get :pockets 
    end
  end
- 
 
- resources :pockets, only: [:destroy, :new, :edit, :update, :create] do
+ resources :pockets, only: [:destroy, :update, :edit, :create] do
   member do
     get :knowhows 
+    get :posted_knowhows
+    
    end
   end
- resources :knowhows
+ resources :knowhows, only: [:destroy, :update, :edit, :create, :show] do
+ member do
+  post '/knowhow_posted' => 'knowhows#knowhow_posted'
+ end
+end
  
  resources :relationships, only: [:create, :destroy]
  end

@@ -4,7 +4,10 @@ class User < ApplicationRecord
     validates :email, presence: true, length: { maximum: 255 },
                       format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                       uniqueness: { case_sensitive: false }
+    
     has_secure_password
+    
+    mount_uploader :image, ImageUploader
     
     has_many :pockets
     
@@ -19,6 +22,10 @@ class User < ApplicationRecord
     end
   end
   
+  def feed_pockets
+      Pockets.where(user_id: self.id)
+  end
+  
     def unfollow(other_user)
         relationship = self.relationships.find_by(follow_id: other_user.id)
         relationship.destroy if relationship
@@ -27,4 +34,5 @@ class User < ApplicationRecord
     def following?(other_user)
         self.followings.include?(other_user)
     end
+    
 end

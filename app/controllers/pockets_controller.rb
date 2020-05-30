@@ -1,6 +1,6 @@
 class PocketsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy, :update, :edit]
+  before_action :correct_user, only: [:destroy, :update]
 
   def destroy
     @pocket.destroy
@@ -19,29 +19,32 @@ class PocketsController < ApplicationController
   end
 end
 
-  def new
-     @pocket.new
-     @pocket = current_user.pocket_name.build
-  end
+ 
 
   def update
-    @pocket = Pocket.find_by(id: params[:id])
+     @pocket =  Pocket.find(params[:id])
       if @pocket.update(pocket_name_params)
             flash[:success] = "Pocketが更新されました"
             redirect_to pockets_user_path(current_user.id)
         else
             flash.now[:danger] = "Pocketが更新されませんでした"
-            render :edit
+            render "edit"
         end
   end
 
   def edit
-    @pocket = Pocket.find_by(id: params[:id])
+  @pocket =  Pocket.find(params[:id])
   end
   
   def knowhows
-     @knowhow = current_pocket.knowhows.build
-    @knowhows = current_pocket.knowhows.order(id: :desc).page(params[:page])
+     @pocket = Pocket.find(params[:id])
+     @knowhow = @pocket.knowhows.build
+    @knowhows = @pocket.knowhows.order(id: :desc).page(params[:page])
+  end
+  
+  def posted_knowhows
+    @knowhows = Knowhow.where(posted: true)
+    @search_knowhows = Knowhow.where(posted: true).page(params[:page]).search(params[:search])
   end
   
   def pocket_name_params
@@ -58,9 +61,11 @@ end
  
   private
   
-  def current_pocket
-        @current_pocket ||= Pocket.find_by(id: :pocket_id)
-    end
+  def correct_pocket
+      @pocket = Pocket.find(params[:id])
+  @knowhow = @pocket.knowhows.find_by(id: params[:id])
+end
+
   
   def knowhow_params
     params.require(:knowhow).permit(:content, :title)

@@ -1,50 +1,68 @@
 class KnowhowsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+
+
   
+  def destroy
+    @knowhow = Knowhow.find(params[:id])
+    @knowhow.destroy
+    flash[:success] = "ポケットを削除しました。"
+    redirect_back(fallback_location:root_path)
+  end
+
   def create
-    @knowhow = pocket.knowhows.build(title_params, content_params)
+    puts "ここを見ろ"
+    p params
+    @pocket = Pocket.find(params[:id])
+    @knowhow = @pocket.knowhows.build(knowhow_params)
     if @knowhow.save
-      flash[:success] = "新しいノウハウができました。"
-      redirect_to knowhows_pocket_path(pocket.id)
+      flash[:success] = "ノウハウができました。"
+      redirect_to  knowhows_pocket_path(@pocket)
+      
     else
       flash.now[:danger] = "ノウハウができませんでした。"
       render :new
-    end
   end
+end
 
-  def destroy
-    @knowhow.destroy
-    flash[:success] = "ノウハウを削除しました。"
-    redirect_to "pockets/index"
-  end
+ 
 
-
-  def show
-    @knowhow = current_pocket.knowhows.build
-    @knowhows = current_pocket.knowhows.order(id: :desc).page(params[:page])
+  def update
+     @knowhow =  Knowhow.find(params[:id])
+      if @knowhow.update(knowhow_params)
+            flash[:success] = "ノウハウが更新されました"
+            redirect_to knowhow_path(@knowhow)
+        else
+            flash.now[:danger] = "ノウハウが更新されませんでした"
+            render "edit"
+        end
   end
 
   def edit
-  end
-
-  def new
-  end
-
-  def update
+  @knowhow =  Knowhow.find(params[:id])
   end
   
+  def show
+    @knowhow = Knowhow.find(params[:id])
+  end
+  
+  def knowhow_posted
+  	  @knowhow = Knowhow.find(params[:id])
+	  @knowhow.posted = !@knowhow.posted
+	  @knowhow.save
+	end
+	
+	
+
+ 
   private
   
+   def correct_pocket
+       @pocket = Pocket.find(params[:id])
+  @knowhow = @pocket.knowhows.find_by(id: params[:id])
+end
+  
   def knowhow_params
-    params.require(:knowhow).permit(:content, :title)
+    params.require(:knowhow).permit(:content, :title, :posted)
   end
-  
-  def correct_user
-    @knowhow = correct_pocket.knowhows.find_by(id: params[:id])
-    unless @knowhow
-    redirect_back
-    end
-  end
-  
 end

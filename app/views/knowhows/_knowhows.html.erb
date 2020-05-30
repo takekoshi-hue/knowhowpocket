@@ -1,19 +1,17 @@
 <ul class = "list-unstyled">
+    <p>ノウハウ一覧</p>
     <% knowhows.each do |knowhow| %>
     <li class = "media mb-3">
-        <img class = "mr-2 rounded" src = "<%= gravatar_url(knowhow.user, { size: 50 }) %>" alt= "">
         <div class = "media-body">
             <div>
-                <%= link_to knowhow.user.name, user_path(knowhow.user) %>
-                <span class = "text-muted">posted at <%= knowhow.create_at %></span>
+                <%= link_to knowhow.title, knowhow_path(knowhow) %>
+                <span class = "text-muted">posted at <%= knowhow.created_at %></span>
             </div>
+           
             <div>
-                <p><%= knowhow.title %></p>
-                <p><%= knowhow.content %></p>
-            </div>
-            <div>
-                <% if current_user == knowhow.user %>
-                <%= link_to"Delete", knowhow, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
+                <% if @pocket == knowhow.pocket %>
+                <%= link_to "Delete", knowhow, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
+               
                 <% end %>
             </div>
         </div>

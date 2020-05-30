@@ -5,25 +5,12 @@
                 <h3 class = "card-title"><%= @user.name %></h3>
             </div>
             <div class = "card-body">
-                <img class = "rounded img-fluid" src= "<%= gravatar_url(@user, {size: 500 }) %>" alt="">
+               
+         <%= image_tag @user.image.to_s %>
+        
+                
             </div>
         </div>
-        <%= render "relationships/follow_button", user: @user %>
-        <div>
-            <%= link_to "followings", followings_user_path(@user) %>
-            <%= "active" if current_page?(followings_user_path(@user)) %>
-        </div>
-        
-         <div>
-            <%= link_to "followers", followers_user_path(@user) %>
-            <%= "active" if current_page?(followers_user_path(@user)) %>
-        </div>
     </aside>
-    <div class = "col-sm-8">
-        <ul class = "nav nav-tabs nav-justified mb-3">
-            <li class = "nav-item"><a href = "#" class = "nav-link">ユーザー’s ノウハウ</a></li>
-            
-            <li class = "nav-item"><a href = "#" class = "nav-link">フォローノウハウ</a></li>
-        </ul>
-    </div>
+  
 </div>

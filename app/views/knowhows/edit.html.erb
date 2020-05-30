@@ -1,2 +1,19 @@
-<h1>Knowhows#edit</h1>
-<p>Find me in app/views/knowhows/edit.html.erb</p>
+<% if logged_in? %>
+<div class = "row">
+    <aside class = "col-sm-4">
+        <%= form_with(model: @knowhow, local: true) do |f| %>
+        <p>タイトル</p>
+        <div class = "form-group">
+            <%= f.text_area :title, class: "form-control", rows: 5 %>
+        </div>
+        
+        <p>内容</p>
+        <div class = "form-group">
+            <%= f.text_area :content, class: "form-control", rows: 5 %>
+        </div>
+        <%= f.submit "編集OK", class: "btn btn-primary btn-block" %>
+        <% end %>
+    </aside>
+    
+</div>
+<% end %>
