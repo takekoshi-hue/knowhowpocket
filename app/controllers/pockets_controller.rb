@@ -15,7 +15,7 @@ class PocketsController < ApplicationController
       redirect_to pockets_user_path(current_user.id)
     else
       flash.now[:danger] = "ポケットができませんでした。"
-      render :new
+      render :"new"
   end
 end
 
@@ -42,6 +42,9 @@ end
     @knowhows = @pocket.knowhows.order(id: :desc).page(params[:page])
   end
   
+  def new
+end
+
   def posted_knowhows
     @knowhows = Knowhow.where(posted: true)
     @search_knowhows = Knowhow.where(posted: true).page(params[:page]).search(params[:search])

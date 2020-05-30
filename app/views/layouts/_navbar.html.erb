@@ -20,7 +20,7 @@
                         <li class = "dropdown-item"><%= link_to "Logout", logout_path, method: :delete %></li>
                         <li class = "dropdown-item"><%= link_to "ユーザー編集", edit_user_path(current_user) %></li>
                         <li class = "dropdown-item"><%= link_to "My ポケット", pockets_user_path(current_user) %></li>
-                       <li class = "dropdown-item"><%= link_to "ノウハウ掲示板", posted_knowhows_knowhow_path() %></li></li>
+                       <li class = "dropdown-item"><%= link_to "ノウハウ掲示板", posted_knowhows_knowhow_path(1) %></li>
                     </ul>
                 </li>
                 <% else %>

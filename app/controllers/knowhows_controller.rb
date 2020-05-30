@@ -21,7 +21,7 @@ class KnowhowsController < ApplicationController
       
     else
       flash.now[:danger] = "ノウハウができませんでした。"
-      render :new
+      render "new"
   end
 end
 
