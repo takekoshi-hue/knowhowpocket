@@ -25,7 +25,10 @@ class KnowhowsController < ApplicationController
   end
 end
 
- 
+ def posted_knowhows
+    @knowhows = Knowhow.where(posted: true)
+    @search_knowhows = Knowhow.where(posted: true).page(params[:page]).search(params[:search])
+  end
 
   def update
      @knowhow =  Knowhow.find(params[:id])

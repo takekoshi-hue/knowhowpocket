@@ -28,6 +28,7 @@ Rails.application.routes.draw do
  resources :knowhows, only: [:destroy, :update, :edit, :create, :show] do
  member do
   post '/knowhow_posted' => 'knowhows#knowhow_posted'
+  get :posted_knowhows
  end
 end
  
