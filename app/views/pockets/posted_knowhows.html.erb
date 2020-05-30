@@ -14,11 +14,14 @@
                      <%= image_tag knowhow.pocket.user.image.to_s %>
                 <div class = "media-body">
                     <div>
-                        <%= knowhow.pocket.user.name %>
+                         <%= link_to knowhow.pocket.user.name, user_path(knowhow.pocket.user) %>
                         <span class = "text-muted">posted at <%= knowhow.created_at %></span>
                     </div>
                     <div>
                         <%= link_to knowhow.title, knowhow_path(knowhow) %>
+                    </div>
+                    <div>
+                          <%=render 'favorites/favorite_button', knowhow: knowhow %>
                     </div>
                 </div>
             </li>

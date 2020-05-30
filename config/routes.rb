@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  get 'favorites/create'
+  get 'favorites/destroy'
  root to: "toppages#index"
  
  get "login", to: "sessions#new"
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
      get :followings
      get :followers
      get :pockets 
+     get :likes
    end
  end
 
@@ -29,4 +32,5 @@ Rails.application.routes.draw do
 end
  
  resources :relationships, only: [:create, :destroy]
+ resources :favorites, only: [:create, :destroy]
  end

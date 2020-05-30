@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     @followings = @user.followings.page(params[:page])
     counts(@user)
     
+    #@knowhow = Knowhow.find(params[:id])
+    @knowhows = @user.likes.page(params[:page])
+   
   end
 
 

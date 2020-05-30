@@ -16,6 +16,23 @@ class User < ApplicationRecord
     has_many :reverses_of_relationship, class_name: "Relationship", foreign_key: "follow_id"
     has_many :followers, through: :reverses_of_relationship, source: :user
     
+    has_many :knowhows
+    has_many :favorites
+    has_many :likes, through: :favorites, source: :knowhow
+
+    def favorite(knowhow)
+   favorites.find_or_create_by(knowhow_id: knowhow.id)
+ end
+ 
+ def unfavorite(knowhow)
+   favorite = favorites.find_by(knowhow_id: knowhow.id)
+   favorite.destroy if favorite
+end
+
+  def favoriting?(knowhow)
+  self.likes.include?(knowhow)
+  end
+    
     def follow(other_user)
         unless self == other_user
         self.relationships.find_or_create_by(follow_id: other_user.id)
