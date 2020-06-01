@@ -25,7 +25,11 @@
                     }
                 } %>
               <span id="true_or_false">
-                
+                  <% if @knowhow.posted == true %>
+                     <span class="true">posted</span>
+                  <% else %>
+                     <span class="false">not posted</span>
+                  <% end %>
               </span>
             </p>
            

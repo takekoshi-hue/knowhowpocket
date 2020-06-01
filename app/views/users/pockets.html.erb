@@ -1,9 +1,11 @@
+<p>ポケット作成ページ</p>
 <% if logged_in? %>
 <div class = "row">
     <aside class = "col-sm-5">
         
         <%= form_with(model: @pocket, local: true) do |f| %>
         <div class = "form-group">
+            <%= f.label :pocket_name, "ポケット名" %>
             <%= f.text_area :pocket_name, class: "form-control", rows: 5 %>
         </div>
         <%= f.submit "Post", class: "btn btn-primary btn-block" %>
