@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :edit, :update, :followings, :followers]
-  before_action :current_user, only: [:edit]
-  
+  before_action :current_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit]
   def show
     @user = User.find(params[:id])
     @users = User.order(id: :desc).page(params[:page]).per(25)
@@ -68,7 +68,14 @@ class UsersController < ApplicationController
     @pockets = current_user.pockets.order(id: :desc).page(params[:page])
   end
   
+ private
  
+  def correct_user
+    @user = current_user
+    unless @user
+    redirect_back(fallback_location: root_path)
+  end
+  end
   
   
   def user_params

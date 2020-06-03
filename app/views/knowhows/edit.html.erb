@@ -1,5 +1,7 @@
 <% if logged_in? %>
+<p>Myノウハウ編集ページ</p>
 <div class = "row">
+    <% if current_user == @knowhow.pocket.user %>
     <aside class = "col-sm-4">
         <%= form_with(model: @knowhow, local: true) do |f| %>
         <p>タイトル</p>
@@ -14,6 +16,6 @@
         <%= f.submit "編集OK", class: "btn btn-primary btn-block" %>
         <% end %>
     </aside>
-    
+    <% end %>
 </div>
 <% end %>

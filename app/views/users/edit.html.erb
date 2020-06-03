@@ -11,6 +11,7 @@
         <%= image_tag @user.image.to_s %>
         </div>
         
+        <% if current_user == @user %>
         <div>
        <%=f.label :name %>
         <%= f.text_field :name, class: "form-control" %>
@@ -24,5 +25,9 @@
         
         <%= f.submit "編集OK",　class: "btn btn-primary" %>
         <% end %>
+        
+        <% end %>
+        
+        
     </div>
 </div>

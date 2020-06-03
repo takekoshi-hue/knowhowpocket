@@ -1,5 +1,7 @@
 <% if logged_in? %>
+<p>Myポケット編集ページ</p>
 <div class = "row">
+    <% if current_user == @pocket.user %>
     <aside class = "col-sm-4">
         <%= form_with(model: @pocket, local: true) do |f| %>
         <div class = "form-group">
@@ -8,6 +10,6 @@
         <%= f.submit "編集OK", class: "btn btn-primary btn-block" %>
         <% end %>
     </aside>
-    
+    <% end %>
 </div>
 <% end %>

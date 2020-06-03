@@ -1,6 +1,6 @@
 class PocketsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy, :update]
+  before_action :correct_user, only: [:destroy, :update, :edit]
 
   def destroy
     @pocket.destroy
@@ -34,6 +34,7 @@ end
 
   def edit
   @pocket =  Pocket.find(params[:id])
+  @current_user ||= User.find_by(id: session[:user_id])
   end
   
   def knowhows
@@ -57,7 +58,7 @@ end
   def correct_user
   @pocket = current_user.pockets.find_by(id: params[:id])
   unless @pocket
-  redirect_to "sessions/new"
+  redirect_to root_path
   end
 end
 
@@ -65,7 +66,7 @@ end
   private
   
   def correct_pocket
-      @pocket = Pocket.find(params[:id])
+      @pocket = current_user.pocket.find(params[:id])
   @knowhow = @pocket.knowhows.find_by(id: params[:id])
 end
 

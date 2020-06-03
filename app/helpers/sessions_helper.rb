@@ -11,6 +11,7 @@ module SessionsHelper
        @pocket = Pocket.find(params[:id])
    end
     
+    
     def logged_in?
         !!current_user
     end
