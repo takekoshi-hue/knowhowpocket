@@ -15,7 +15,7 @@
             
             <% if current_user == @knowhow.pocket.user %>
             <p>
-              <strong>投稿:</strong>
+              <strong>ノウハウ掲示板に投稿:</strong>
                 <%= check_box_tag 'knowhow[posted]', true, @knowhow.posted, {
                     onchange: '$(this).data("params", "knowhow[posted]=" + this.checked)',
                     data: {
@@ -40,11 +40,11 @@
             </div>
              <% end %>
             <div>
-               <%= link_to "ポケット一覧に戻る", pockets_user_path(current_user) %>
+               <%= link_to "ポケット一覧", pockets_user_path(current_user) %>
             </div>
             
             <div>
-               <%= link_to "ノウハウ掲示板に戻る", posted_knowhows_knowhow_path %>
+               <%= link_to "ノウハウ掲示板", posted_knowhows_knowhow_path %>
             </div>
         </div>
     </li>

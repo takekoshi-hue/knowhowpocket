@@ -59,6 +59,15 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem "fog-aws"
+
+group :development, :test do
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+end
+
+gem "dotenv-rails"
+gem "dotenv"
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
@@ -74,3 +83,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem "pg", ">= 0.18", "< 2.0"
 end
+
+
+
