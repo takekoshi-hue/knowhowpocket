@@ -13,6 +13,12 @@
                 <p><%= @knowhow.content %></p>
             </div>
             
+            <div>
+                <%=render 'favorites/favorite_button', knowhow: @knowhow %>
+            </div>
+            
+            <br>
+            
             <% if current_user == @knowhow.pocket.user %>
             <p>
               <strong>投稿:</strong>
@@ -24,6 +30,9 @@
                         remote: true
                     }
                 } %>
+                
+                
+                
               <span id="true_or_false">
                   <% if @knowhow.posted == true %>
                      <span class="true">posted</span>
