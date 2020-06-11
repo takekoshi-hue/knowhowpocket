@@ -18,14 +18,14 @@ Rails.application.routes.draw do
    end
  end
 
- resources :pockets, only: [:destroy, :update, :edit, :create] do
+ resources :pockets, only: [:destroy, :update, :edit, :create, :new] do
   member do
     get :knowhows 
     get :posted_knowhows
     
    end
   end
- resources :knowhows, only: [:destroy, :update, :edit, :create, :show] do
+ resources :knowhows, only: [:destroy, :update, :edit, :create, :show, :new] do
  member do
   post '/knowhow_posted' => 'knowhows#knowhow_posted'
   get :posted_knowhows

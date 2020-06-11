@@ -44,6 +44,7 @@ end
   end
   
   def new
+    @pocket = Pocket.new
 end
 
   def posted_knowhows
